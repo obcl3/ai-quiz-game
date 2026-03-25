@@ -91,25 +91,24 @@ function App() {
   // ========== Screen: Home ==========
   if (screen === 'home') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+      <div className="min-h-screen bg-white py-16 px-6">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="text-6xl mb-4">🎮</div>
-            <h1 className="text-5xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+          <div className="text-center mb-16">
+            <h1 className="text-6xl font-bold text-gray-900 mb-4">
               AI Knowledge Quiz
             </h1>
-            <p className="text-gray-600 text-lg">
-              AI業界を学ぶゲーム。毎日のクイズで知識を深めよう！
+            <p className="text-lg text-gray-600">
+              AI業界を学ぶ。毎日のクイズで知識を深めよう。
             </p>
           </div>
 
           {/* Theme Selection */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
               テーマを選択
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {THEMES.map((theme) => {
                 const progress = userProgress[theme]
                 const score = progress?.correctAnswers ?? 0
@@ -119,17 +118,12 @@ function App() {
                   <button
                     key={theme}
                     onClick={() => handleStartTheme(theme)}
-                    className="p-6 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 text-left"
+                    className="p-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors duration-200 text-left"
                   >
-                    <div className="text-3xl mb-2">
-                      {theme === 'LLM' && '🤖'}
-                      {theme === 'Vision' && '👁️'}
-                      {theme === 'Agent' && '⚙️'}
-                    </div>
-                    <h3 className="font-bold text-lg text-gray-900 mb-2">
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">
                       {theme}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-500">
                       {score}/{total} 正解
                     </p>
                   </button>
@@ -140,11 +134,11 @@ function App() {
 
           {/* Score Board */}
           {Object.keys(userProgress).length > 0 && (
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                📊 あなたのスコア
+            <div className="border border-gray-300 rounded-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                あなたのスコア
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {THEMES.map((theme) => {
                   const progress = userProgress[theme]
                   if (!progress) return null
@@ -158,18 +152,18 @@ function App() {
 
                   return (
                     <div key={theme} className="flex justify-between items-center">
-                      <span className="font-semibold text-gray-700">{theme}</span>
+                      <span className="font-semibold text-gray-900">{theme}</span>
                       <div className="flex items-center gap-4">
                         <div className="text-sm text-gray-600">
                           {progress.correctAnswers}/{progress.totalAttempts}
                         </div>
-                        <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="w-32 bg-gray-200 rounded-full h-1">
                           <div
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all"
+                            className="bg-gray-900 h-1 rounded-full transition-all"
                             style={{ width: `${percentage}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm font-bold text-gray-700 w-10">
+                        <span className="text-sm font-semibold text-gray-700 w-10">
                           {percentage}%
                         </span>
                       </div>
@@ -177,9 +171,9 @@ function App() {
                   )
                 })}
               </div>
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-lg font-bold text-gray-900">
-                  総合スコア: <span className="text-blue-600">{getTotalScore()}</span> 問
+              <div className="mt-8 pt-8 border-t border-gray-300">
+                <p className="text-lg text-gray-900">
+                  総合スコア: <span className="font-bold">{getTotalScore()}</span> 問
                 </p>
               </div>
             </div>
@@ -194,21 +188,21 @@ function App() {
     const isCorrect = selectedAnswer === currentQuiz.correctAnswer
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+      <div className="min-h-screen bg-white py-12 px-6">
         <div className="max-w-2xl mx-auto">
           {/* Progress */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-gray-600 font-semibold">
-                {selectedTheme} クイズ
+          <div className="mb-12">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-sm text-gray-600 font-semibold">
+                {selectedTheme}
               </span>
-              <span className="text-gray-600">
+              <span className="text-sm text-gray-600">
                 {currentQuizIndex + 1}/{themeQuizzes.length}
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all"
+                className="bg-gray-900 h-1 rounded-full transition-all"
                 style={{
                   width: `${((currentQuizIndex + 1) / themeQuizzes.length) * 100}%`,
                 }}
@@ -217,24 +211,31 @@ function App() {
           </div>
 
           {/* Quiz Card */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div>
             {/* Question */}
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12">
               {currentQuiz.question}
             </h2>
 
             {/* Options */}
-            <div className="space-y-3 mb-8">
+            <div className="space-y-4 mb-12">
               {currentQuiz.options.map((option, index) => {
                 const isSelected = selectedAnswer === index
                 const isAnswered = answered
 
-                let bgColor = 'bg-gray-100 hover:bg-gray-200'
+                let bgColor = 'bg-white hover:bg-gray-50'
+                let borderColor = 'border-gray-300'
+
                 if (isAnswered) {
                   if (index === currentQuiz.correctAnswer) {
-                    bgColor = 'bg-green-100 border-green-500'
+                    bgColor = 'bg-white'
+                    borderColor = 'border-gray-900'
                   } else if (isSelected && !isCorrect) {
-                    bgColor = 'bg-red-100 border-red-500'
+                    bgColor = 'bg-white'
+                    borderColor = 'border-gray-400'
+                  } else if (!isSelected) {
+                    bgColor = 'bg-gray-50'
+                    borderColor = 'border-gray-300'
                   }
                 }
 
@@ -243,20 +244,18 @@ function App() {
                     key={index}
                     onClick={() => handleAnswerClick(index)}
                     disabled={isAnswered}
-                    className={`w-full p-4 rounded-lg border-2 text-left font-semibold transition-all ${
-                      isAnswered ? 'border-2' : 'border-gray-200'
-                    } ${bgColor} disabled:cursor-default`}
+                    className={`w-full p-4 rounded-lg border text-left font-semibold transition-colors ${bgColor} border-${borderColor} disabled:cursor-default`}
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full text-sm font-bold">
+                    <span className="flex items-center gap-4">
+                      <span className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 text-gray-900 rounded text-sm font-bold flex-shrink-0">
                         {String.fromCharCode(65 + index)}
                       </span>
-                      <span className="text-gray-800">{option}</span>
+                      <span className="text-gray-900 flex-1">{option}</span>
                       {isAnswered && index === currentQuiz.correctAnswer && (
-                        <span className="ml-auto text-green-600 text-xl">✅</span>
+                        <span className="text-lg flex-shrink-0">✓</span>
                       )}
                       {isAnswered && isSelected && !isCorrect && (
-                        <span className="ml-auto text-red-600 text-xl">❌</span>
+                        <span className="text-lg flex-shrink-0">✗</span>
                       )}
                     </span>
                   </button>
@@ -266,9 +265,10 @@ function App() {
 
             {/* Explanation */}
             {answered && (
-              <div className="mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-sm text-gray-700">
-                  <span className="font-bold text-blue-600">解説：</span>{' '}
+              <div className="mb-12 p-6 bg-gray-50 rounded-lg border border-gray-300">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-gray-900">解説</span>
+                  <br />
                   {currentQuiz.explanation}
                 </p>
                 {currentQuiz.sourceUrl && (
@@ -276,7 +276,7 @@ function App() {
                     href={currentQuiz.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-blue-600 hover:underline mt-2 inline-block"
+                    className="text-xs text-gray-600 hover:text-gray-900 mt-4 inline-block"
                   >
                     詳しく読む →
                   </a>
@@ -288,38 +288,37 @@ function App() {
             <div className="flex gap-4">
               <button
                 onClick={handleBackToHome}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300 transition-all"
+                className="px-6 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
               >
-                ホームに戻る
+                戻る
               </button>
               {answered && (
                 <>
                   <button
                     onClick={() => {
                       // Share
-                      const text = `🎮 AI Knowledge Quiz で「${selectedTheme}」に挑戦！\n正解数: ${(userProgress[selectedTheme!]?.correctAnswers || 0)}/${(userProgress[selectedTheme!]?.totalAttempts || 0)}\n🔗 https://ai-quiz-game-sooty.vercel.app/`
+                      const text = `AI Knowledge Quiz で「${selectedTheme}」に挑戦\n正解数: ${(userProgress[selectedTheme!]?.correctAnswers || 0)}/${(userProgress[selectedTheme!]?.totalAttempts || 0)}\nhttps://ai-quiz-game-sooty.vercel.app/`
                       if (navigator.share) {
                         navigator.share({
                           title: 'AI Knowledge Quiz',
                           text,
                         })
                       } else {
-                        // Fallback: copy to clipboard
                         navigator.clipboard.writeText(text)
-                        alert('シェアテキストをコピーしました！')
+                        alert('シェアテキストをコピーしました')
                       }
                     }}
-                    className="px-6 py-3 bg-purple-500 text-white rounded-lg font-bold hover:bg-purple-600 transition-all"
+                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
                   >
-                    📤 シェア
+                    シェア
                   </button>
                   <button
                     onClick={handleNextQuiz}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-bold hover:shadow-lg transition-all"
+                    className="flex-1 px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
                   >
                     {currentQuizIndex < themeQuizzes.length - 1
-                      ? '次へ →'
-                      : '結果を見る →'}
+                      ? '次へ'
+                      : '結果を見る'}
                   </button>
                 </>
               )}
@@ -338,46 +337,39 @@ function App() {
     const percentage = total > 0 ? Math.round((score / total) * 100) : 0
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="text-6xl mb-6">🎉</div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              お疲れさま！
-            </h2>
-            <p className="text-gray-600 mb-8">
-              「{selectedTheme}」のクイズが完了しました
+      <div className="min-h-screen bg-white py-16 px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            完了しました
+          </h2>
+          <p className="text-lg text-gray-600 mb-12">
+            「{selectedTheme}」のクイズが完了しました
+          </p>
+
+          {/* Score Display */}
+          <div className="mb-12 p-8 border border-gray-300 rounded-lg bg-gray-50">
+            <p className="text-sm text-gray-600 mb-4">正解数</p>
+            <p className="text-6xl font-bold text-gray-900 mb-4">
+              {score}/{total}
             </p>
+            <p className="text-lg text-gray-600">正答率 {percentage}%</p>
+          </div>
 
-            {/* Score Display */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl">
-              <p className="text-gray-600 mb-2">正解数</p>
-              <p className="text-5xl font-black text-blue-600">
-                {score}/{total}
-              </p>
-              <p className="text-gray-600 mt-2">正答率: {percentage}%</p>
-            </div>
+          {/* Performance Message */}
+          <div className="mb-12">
+            <p className="text-xl text-gray-700">
+              {percentage === 100 && '完璧です。素晴らしい。'}
+              {percentage >= 66 && percentage < 100 && '素晴らしい成績です。'}
+              {percentage >= 33 && percentage < 66 && '頑張りました。'}
+              {percentage < 33 && 'また挑戦してください。'}
+            </p>
+          </div>
 
-            {/* Performance Badge */}
-            <div className="mb-8">
-              {percentage === 100 && (
-                <p className="text-2xl">🏆 完璧です！素晴らしい！</p>
-              )}
-              {percentage >= 66 && percentage < 100 && (
-                <p className="text-2xl">⭐ 素晴らしい成績です！</p>
-              )}
-              {percentage >= 33 && percentage < 66 && (
-                <p className="text-2xl">👍 頑張りました！</p>
-              )}
-              {percentage < 33 && (
-                <p className="text-2xl">💪 また挑戦してね！</p>
-              )}
-            </div>
-
-            {/* Share Button */}
+          {/* Actions */}
+          <div className="space-y-4">
             <button
               onClick={() => {
-                const text = `🎮 AI Knowledge Quiz で「${selectedTheme}」に挑戦！\n正解数: ${score}/${total} (${percentage}%)\n🔗 https://ai-quiz-game-sooty.vercel.app/`
+                const text = `AI Knowledge Quiz で「${selectedTheme}」に挑戦\n正解数: ${score}/${total} (${percentage}%)\nhttps://ai-quiz-game-sooty.vercel.app/`
                 if (navigator.share) {
                   navigator.share({
                     title: 'AI Knowledge Quiz',
@@ -385,18 +377,17 @@ function App() {
                   })
                 } else {
                   navigator.clipboard.writeText(text)
-                  alert('シェアテキストをコピーしました！')
+                  alert('シェアテキストをコピーしました')
                 }
               }}
-              className="w-full px-6 py-3 bg-purple-500 text-white rounded-lg font-bold hover:bg-purple-600 transition-all mb-4"
+              className="w-full px-6 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
             >
-              📤 結果をシェア
+              結果をシェア
             </button>
 
-            {/* Back to Home */}
             <button
               onClick={handleBackToHome}
-              className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600 transition-all"
+              className="w-full px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
             >
               ホームに戻る
             </button>
