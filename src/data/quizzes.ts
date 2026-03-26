@@ -118,5 +118,74 @@ export const quizzes: Quiz[] = [
     correctAnswer: 1,
     explanation: 'Tool Use (関数呼び出し) により、Agent は LLM の知識だけに頼らず、リアルタイムの情報検索、計算、データベース操作など、外部のツールやサービスを活用して、より正確で実用的な結果を生成できます。',
     sourceUrl: 'https://openai.com/research/function-calling-and-other-api-updates'
+  },
+
+  // ai-agent Theme (from blog articles)
+  {
+    id: 'ai-agent-001',
+    theme: 'Agent',
+    question: 'Claude 4.6 Opusのエージェントとしての特徴として正しいのはどれか？',
+    options: [
+      'テキスト生成のみに特化している',
+      'PC操作を代行するエージェントとしての実力は業界トップクラス',
+      'オフラインでのみ動作する'
+    ],
+    correctAnswer: 1,
+    explanation: 'Claude 4.6 Opusは、コーディングとツール操作能力が飛躍的に向上し、特にPC操作を代行する「エージェント」としての実力は現在業界トップクラスです。',
+    sourceUrl: 'https://www.anthropic.com/news'
+  },
+  {
+    id: 'ai-agent-002',
+    theme: 'Agent',
+    question: 'Claude 4.6 Opusの新機能「Agent Teams」の特徴として最も正確なのは？',
+    options: [
+      'テキスト翻訳専用の機能',
+      '複雑なタスクを「プランナー」「実行役」「レビュアー」といった複数のエージェントに分担させて協力して解決する仕組み',
+      'ユーザーの承認がないと何もできない'
+    ],
+    correctAnswer: 1,
+    explanation: '複雑なタスクをAIが自ら「プランナー」「実行役」「レビュアー」といった複数のエージェントに分担させ、協力して解決する仕組みです。人間が指示を細分化する手間が省け、ビジネス自動化が劇的に加速します。',
+    sourceUrl: 'https://www.anthropic.com/news'
+  },
+  {
+    id: 'ai-agent-003',
+    theme: 'Agent',
+    question: 'Claude 4.6 SonnetのDesktop Control機能でできることとして最も正確なのは？',
+    options: [
+      'ブラウザのテキスト操作のみ',
+      'PCのデスクトップ画面を直接認識し、マウスやキーボードを操作できる',
+      'クラウドサービスへのアクセスのみ'
+    ],
+    correctAnswer: 1,
+    explanation: 'Claude 4.6 SonnetがPCのデスクトップ画面を直接認識し、マウスやキーボードを操作できる「Desktop Control」機能のパブリックベータを開始しました。単なるブラウザ操作を超え、Excelや専用ソフトなどをAIが自律的に使いこなす「真のエージェント体験」が身近になります。',
+    sourceUrl: 'https://www.anthropic.com/news'
+  },
+
+  // llm Theme (from blog articles)
+  {
+    id: 'llm-004',
+    theme: 'LLM',
+    question: 'Alibaba Qwen 3.5 の推論コストの削減率として正しいのはどれか？',
+    options: [
+      '前世代比で30%削減',
+      '前世代比で60%削減',
+      '前世代比で90%削減'
+    ],
+    correctAnswer: 1,
+    explanation: 'Alibaba Qwen 3.5 は、推論コストを前世代（Qwen 3 Max）比で60%削減しながら、Google Gemini 3 Proの1/18のコストで同等以上の性能を提供します。',
+    sourceUrl: 'https://alibabacloud.com/'
+  },
+  {
+    id: 'llm-005',
+    theme: 'LLM',
+    question: 'Alibaba Qwen 3.5 (397B-A17B) のアーキテクチャの特徴は？',
+    options: [
+      '単一の大規模モデル',
+      'Mixture of Experts (MoE) - 512個のエキスパート構成',
+      'CNN ベースのアーキテクチャ'
+    ],
+    correctAnswer: 1,
+    explanation: 'Qwen 3.5 は、総パラメータ数 397B、アクティブパラメータ 17B の Mixture of Experts (MoE) 構成で、512個のエキスパートと、より効率的な注意機構を採用しています。',
+    sourceUrl: 'https://alibabacloud.com/'
   }
 ]
